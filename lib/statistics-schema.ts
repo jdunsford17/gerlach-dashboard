@@ -1,0 +1,4 @@
+import {z} from 'zod';
+import {CREWS} from './call-statistics';
+const count=z.number().int().min(0).max(25000),seconds=z.number().positive().max(86400),day=z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
+export const statisticsSchema=z.object({dispositions:z.array(z.object({date:z.union([day,z.literal('')]),week:z.union([day,z.literal('')]),counts:z.record(z.string().max(250),count)})).max(5000).optional(),days:z.array(z.object({date:day,calls:count,transports:count,chute:z.array(seconds).max(25000),response:z.array(seconds).max(25000)})).min(1).max(3660),weeks:z.array(z.object({start:day,crew:z.enum(CREWS as [string,...string[]]),calls:count,fastestChute:seconds.nullable(),fastestCrew:z.string().max(500)})).max(530),sourceRows:count,filteredRows:count,invalidRows:count,duplicateRows:count,timingExcluded:count,undatedCalls:count,fallbackDates:count,importedAt:z.string().datetime()});

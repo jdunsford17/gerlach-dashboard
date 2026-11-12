@@ -1,0 +1,4 @@
+import {Truck,Van,Ambulance,CarFront} from 'lucide-react';
+import {VEHICLE_ICONS,VEHICLE_ICON_LABELS,type VehicleIconType} from '../lib/vehicle-types';
+export function VehicleIcon({kind,size=25}:{kind?:VehicleIconType;size?:number}){const Icon=kind==='transit'?Van:kind==='box'?Ambulance:kind==='suv'?CarFront:Truck;return <Icon size={size} aria-hidden="true"/>}
+export function VehicleIconPicker({value,onChange,disabled=false}:{value?:VehicleIconType;onChange:(value:VehicleIconType)=>void;disabled?:boolean}){return <fieldset className="vehicleIconPicker"><legend>Vehicle icon</legend><div>{VEHICLE_ICONS.map(kind=><button key={kind} type="button" className={value===kind||!value&&kind==='generic'?'selected':''} aria-pressed={value===kind||!value&&kind==='generic'} disabled={disabled} onClick={()=>onChange(kind)}><VehicleIcon kind={kind} size={30}/><span>{VEHICLE_ICON_LABELS[kind]}</span></button>)}</div></fieldset>}

@@ -1,0 +1,13 @@
+{
+  "dispositions": [],
+  "days": [],
+  "weeks": [],
+  "sourceRows": 0,
+  "filteredRows": 0,
+  "invalidRows": 0,
+  "duplicateRows": 0,
+  "timingExcluded": 0,
+  "undatedCalls": 0,
+  "fallbackDates": 0,
+  "importedAt": "1970-01-01T00:00:00.000Z"
+}
